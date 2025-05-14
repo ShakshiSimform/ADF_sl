@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "df-shakshi"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://azuresgacc.dfs.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://s-vault1.vault.azure.net/"
+		},
+		"AzureKeyVault3_properties_typeProperties_baseUrl": {
+			"value": "https://s-vault1.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "s-server10.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "s_db"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "s_admin"
+		},
+		"RestService_properties_typeProperties_url": {
+			"value": "https://reqres.in/api/users"
+		},
+		"trigger2_properties_pipeline_parameters_StartTime": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"trigger2_properties_pipeline_parameters_EndTime": {
+			"value": "@trigger().outputs.windowEndTime"
+		},
+		"trigger2_properties_pipeline_parameters_filename": {
+			"value": "employees.csv"
+		},
+		"trigger2_properties_pipeline_parameters_tablename": {
+			"value": "emp_info"
+		}
+	}
+}
