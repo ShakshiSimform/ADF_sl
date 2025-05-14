@@ -1,0 +1,32 @@
+{
+	"name": "PL_setVariable",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "conc",
+					"value": {
+						"value": "@concat('Report-',formatDateTime(utcnow(),'yyyymmdd-hhmmss'),'.csv')\n",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"conc": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-05-09T07:01:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

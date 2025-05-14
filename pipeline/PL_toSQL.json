@@ -1,0 +1,102 @@
+{
+	"name": "PL_toSQL",
+	"properties": {
+		"description": "ADLS to SQL server",
+		"activities": [
+			{
+				"name": "CD_TOSQL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@pipeline().parameters.StartTime",
+								"type": "Expression"
+							},
+							"modifiedDatetimeEnd": {
+								"value": "@pipeline().parameters.EndTime",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_csvfile",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@pipeline().parameters.filename",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sqltable",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": {
+								"value": "@pipeline().parameters.tablename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"StartTime": {
+				"type": "string",
+				"defaultValue": "@trigger().outputs.windowStartTime"
+			},
+			"EndTime": {
+				"type": "string",
+				"defaultValue": "@trigger().outputs.windowEndTime"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "employees.csv"
+			},
+			"tablename": {
+				"type": "string",
+				"defaultValue": "emp_info"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-05-08T11:43:56Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

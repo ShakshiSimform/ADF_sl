@@ -1,0 +1,9 @@
+{
+	"name": "df-shakshi",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f196493a-a464-465c-86c5-7c145f40465f",
+		"tenantId": "f3db65e4-ce5a-4d7e-a140-255bf017d87f"
+	}
+}

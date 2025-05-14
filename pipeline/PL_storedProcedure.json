@@ -1,0 +1,44 @@
+{
+	"name": "PL_storedProcedure",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SPRICE]",
+						"storedProcedureParameters": {
+							"ProductName": {
+								"type": "String",
+								"value": "Laptop"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sqltable",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "Customers"
+						}
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-05-09T08:45:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

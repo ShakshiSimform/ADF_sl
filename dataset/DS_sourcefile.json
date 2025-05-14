@@ -1,0 +1,33 @@
+{
+	"name": "DS_sourcefile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "field",
+				"type": "varchar"
+			},
+			{
+				"name": "last_modified",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "iload"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
